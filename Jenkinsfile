@@ -6,6 +6,11 @@ pipeline {
     EMAIL = "105841116623@student.unismuh.ac.id"
     WEB = "https://www.unismuh.ac.id"
    }
+   
+   opsions {
+    disableConcureentBuilds()
+    timeout(time: 10, unit: 'MINUTES')
+   }
 
     stages {
         
