@@ -113,13 +113,26 @@ pipeline {
                     choice(name: "TARGET_ENV", choices: ['DEV','QA','PROD'], description:"Which Environsent")
                 }
             }
-
-
              agent {
         node {
             label "Linux && java17"
         }
     }
+    stage("Release") {
+        when {
+            expression {
+                return params.DEPLOY 
+            }
+        }
+        agent {
+        node {
+            label "Linux && java17"
+        }
+    }
+            steps {
+                echo ('Release it')
+         }
+      }
             steps {
                 echo ('Hello Deploy 1')
                 sleep(5)
