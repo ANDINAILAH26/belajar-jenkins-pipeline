@@ -76,9 +76,10 @@ pipeline {
                         echo("Script ${i}")
                     }
                 }
-                echo ('Start Build')
-                sh("./mvnw clean compile test-compile")
-                echo ('Finish Build')
+                echo 'Start Build'
+                sh "./mvnw clean compile test-compile"
+                echo 'Finish Build'
+
             }
         }
 
