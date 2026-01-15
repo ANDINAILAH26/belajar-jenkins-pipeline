@@ -8,7 +8,7 @@ pipeline {
    }
 
    triggers{
-    cron(*/5 * * * *)
+    cron("*/5 * * * *")
    }
 
    parameters {
@@ -77,7 +77,6 @@ pipeline {
                     }
                 }
                 echo 'Start Build'
-                sh "chmod +x mvnw"
                 sh "./mvnw clean compile test-compile"
                 echo 'Finish Build'
 
