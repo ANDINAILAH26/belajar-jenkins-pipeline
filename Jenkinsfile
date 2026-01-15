@@ -8,12 +8,13 @@ pipeline {
    }
 
    parameters {
-    string(name: "Name", defaultValue: "Guest", descrption:, "What Is Your Name")
-    text(name: "DESCRIPTION", defaultValue: "Guest", descrption:, "Tell me about you")
-    booleanParam(name: "Deploy", defaultValue: false, descrption:, "Need to Deploy")
-    choice(name: "SOCIAL_MEDIA", choices: ['Instagram', 'Facebook', 'Twitter'], descrption:, "Which social media")
-    password(name: "SECRET", defaultValue: "", descrption:, "Encrypt key")
-   }
+    string(name: 'Name', defaultValue: 'Guest', description: 'What is your name?')
+    text(name: 'DESCRIPTION', defaultValue: 'Guest', description: 'Tell me about you')
+    booleanParam(name: 'Deploy', defaultValue: false, description: 'Need to deploy?')
+    choice(name: 'SOCIAL_MEDIA', choices: ['Instagram', 'Facebook', 'Twitter'], description: 'Which social media?')
+    password(name: 'SECRET', defaultValue: '', description: 'Encrypt key')
+}
+
    
    options {
     disableConcurrentBuilds()
@@ -29,13 +30,14 @@ pipeline {
             label "Linux && java17"
         }
     }
-             steps {
-                echo("Hello ${params.NAME}")
-                echo("you descripton is ${params.DESCRIPTION}")
-                echo("your social media is ${Params.SOCIAL_MEDIA}")
-                echo("need to deploy : ${params.DEPLOY}")
-                echo("your secret is ${params.SECRET}")
-             }
+            steps {
+                echo "Hello ${params.Name}"
+                echo "Your description is: ${params.DESCRIPTION}"
+                echo "Your social media is: ${params.SOCIAL_MEDIA}"
+                echo "Need to deploy: ${params.Deploy}"
+                echo "Your secret is: ${params.SECRET}"
+            }
+
         }
         stage("Prepare") {
              environment{
