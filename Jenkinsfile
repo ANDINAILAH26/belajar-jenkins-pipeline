@@ -6,6 +6,14 @@ pipeline {
     EMAIL = "105841116623@student.unismuh.ac.id"
     WEB = "https://www.unismuh.ac.id"
    }
+
+   parameters {
+    string(name: "Name", defaultValue: "Guest", descrption:, "What Is Your Name")
+    text(name: "DESCRIPTION", defaultValue: "Guest", descrption:, "Tell me about you")
+    booleanParam(name: "Deploy", defaultValue: false, descrption:, "Need to Deploy")
+    choice(name: "SOCIAL_MEDIA", choices: ['Instagram', 'Facebook', 'Twitter'], descrption:, "Which social media")
+    password(name: "SECRET", defaultValue: "", descrption:, "Encrypt key")
+   }
    
    options {
     disableConcurrentBuilds()
@@ -14,6 +22,21 @@ pipeline {
 
     stages {
         
+
+        stage("Parameter") {
+            agent {
+        node {
+            label "Linux && java17"
+        }
+    }
+             steps {
+                echo("Hello ${params.NAME}")
+                echo("you descripton is ${params.DESCRIPTION}")
+                echo("your social media is ${Params.SOCIAL_MEDIA}")
+                echo("need to deploy : ${params.DEPLOY}")
+                echo("your secret is ${params.SECRET}")
+             }
+        }
         stage("Prepare") {
              environment{
                 APP = credentials("nayol_park")
