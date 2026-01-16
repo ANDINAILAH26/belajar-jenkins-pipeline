@@ -158,7 +158,13 @@ pipeline {
            }
            agent { node { label "Linux && java17" } }
            steps {
-               echo "Release it"
+              withCredentials([usernamePassword(
+                credentialsId: "nayol_park",
+                usernameVariable: "USER",
+                passwordVariable: "PASSWORD"
+              )]) {
+                sh('echo "Release it with -u $USER -p $PASSWORD" > "release.txt"')
+              }
            }
        }
    }
